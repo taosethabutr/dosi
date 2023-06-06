@@ -162,7 +162,7 @@ def line_notify(message):
 
 ####################################################################
 def main():
-    snapshot_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" (UTC+7)"
+    snapshot_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" (UTC+0)"
     url_rainbow = "https://citizen.dosi.world/api/citizen/v1/arcade/rainbowblast/ranking"
     url_penguin = "https://citizen.dosi.world/api/citizen/v1/arcade/penguindash/ranking"
     url_hexa = "https://citizen.dosi.world/api/citizen/v1/arcade/hexacube/ranking"
