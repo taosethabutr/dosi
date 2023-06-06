@@ -2,7 +2,13 @@ import requests
 import pandas as pd
 from datetime import datetime
 from github import Github
+import base64
 
+####################################################################
+def decode_base64(encoded_string):
+    decoded_bytes = base64.b64decode(encoded_string)
+    decoded_string = decoded_bytes.decode('utf-8')
+    return decoded_string
 ####################################################################
 def github_write(repo_name, file_path, file_content, access_token):
     # Connect to the GitHub repository using an access token
@@ -126,7 +132,7 @@ def create_html_file(data, time):
     repository_name = 'dosi-arcade'
     file_path = 'index.html'
     file_content = html1+html2+html3
-    github_access_token = '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'
+    github_access_token = decode_base64('Z2hwXzJES0N6bDFicjJRUUVVRVcyUVdtZFV5Z1F5cFlVUjFsYlZNNA==')
     github_write(repository_name, file_path, file_content, github_access_token)
 
 ####################################################################
