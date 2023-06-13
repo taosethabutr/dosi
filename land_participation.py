@@ -139,7 +139,7 @@ def create_html_file(data, time, h2, h3):
     '''
     html4 = '''</body>
     '''
-    discord_message = "## :cityscape: Land Snapshot :cityscape:\n`Data as of "+time+"`\n**This message is auto generated every 4hr on Tuesday during Land participation period.  If you have any question please contact <@701502808079204375> for more details.*"
+    discord_message = "## :cityscape: Land Snapshot :cityscape:\n`Data as of "+time+"`\n**This message is auto generated every 4hr during Land participation period.  If you have any question please contact <@701502808079204375> for more details.*"
     send_discord(discord_message, create_image(html1+html2+html3+html4,css))
 ####################################################################
 def fetch_holders():
