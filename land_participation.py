@@ -118,8 +118,8 @@ def create_html_file(data, time):
                 <td>'''+format_number(row['winnerCount'])+'''</td>
                 <td>'''+format_number(row['citizenNftCount'])+'''</td>
                 <td>'''+format_number(row['levelUpPassCount'])+'''</td>
-                <td>'''+format_number(row['nftPerParticipant'])+'''</td>
-                <td>'''+format_number(row['lupPerParticipant'])+'''</td>
+                <td>'''+str(round(row['nftPerParticipant'],2))+'''</td>
+                <td>'''+str(round(row['lupPerParticipant'],2))+'''</td>
             </tr>
         '''
   
