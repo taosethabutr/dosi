@@ -32,7 +32,7 @@ def github_write(repo_name, file_path, file_content, access_token):
     except Exception as e:
         print(f"Error occurred while creating/updating the HTML file: {str(e)}")
 ####################################################################
-def create_html_file(data, time):
+def create_html_file(data, time, h2, h3):
     html1 = '''
     <!DOCTYPE html>
 <html>
@@ -124,23 +124,39 @@ def create_html_file(data, time):
         '''
   
     html3 = '''</table>
-    </body>
+    <p>Level 2 Participation: '''+format_number(data.loc[data['zones'].str.contains('Level 2'), 'participantCount'].sum())+'''/'''+format_number(h2)+''' ('''+str(round(data.loc[data['zones'].str.contains('Level 2'), 'participantCount'].sum()/h2*100,2))+'''%)<br>
+    Level 3 Participation: '''+format_number(data.loc[data['zones'].str.contains('Level 3'), 'participantCount'].sum())+'''/'''+format_number(h3)+''' ('''+str(round(data.loc[data['zones'].str.contains('Level 3'), 'participantCount'].sum()/h3*100,2))+'''%)</p>
+    '''
+    html4 = '''</body>
     </html>
     '''
     repository_name = 'dosi-land'
     file_path = 'index.html'
-    file_content = html1+html2+html3
+    file_content = html1+html2+html3+html4
     github_access_token = decode_base64('Z2hwXzB2QUgxQmtVYVFuS0JqOTJYemV2dnFEamlKb0RyWjBIT3d1Tw==')
-    github_write(repository_name, file_path, file_content, github_access_token)
+    # github_write(repository_name, file_path, file_content, github_access_token)
     filename = "index.html"
     filepath = r"D:\\OneDrive\\Crypto\\DOSI\\land simulator\\"
+    filepath=""
     try:
         with open(filepath+filename, 'w') as file:
             file.write(file_content)
         print(f"HTML file created successfully at {filename}")
     except Exception as e:
         print(f"Error occurred while creating the HTML file: {str(e)}")
-
+####################################################################
+def fetch_holders():
+    url_holders = "https://explorer.blockchain.line.me/v1/finschia-2/contracts/f68e7fd5/token-types?size=30&search_from=top"
+    holders = requests.get(url_holders).json().get('token_types')
+    lv2_holders = 0
+    lv3_holders = 0
+    for holder in holders:
+        if holder['token_type']=='10000003':
+            lv2_holders = holder['holder_count']
+        elif holder['token_type']=='10000004':
+            lv3_holders = holder['holder_count']
+    return lv2_holders, lv3_holders
+    
 ####################################################################
 snapshot_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" (UTC+0)"
 land1_url = "https://citizen.dosi.world/api/citizen/v1/lands/1"
@@ -154,9 +170,12 @@ zoneRewards=[]
 requiredDON=[]
 requiredLUP=[]
 participantCount=[]
+participantRate=[]
 winnerCount=[]
 citizenNftCount=[]
 levelUpPassCount=[]
+
+holders_lv2, holders_lv3 = fetch_holders()
 
 land1 = requests.get(land1_url, headers=headers).json().get('zoneList')
 for l in land1:
@@ -165,6 +184,7 @@ for l in land1:
     requiredDON.append(int(l['requiredAsset']['amount']))
     requiredLUP.append(int(l['requiredLevelUpPassCount']))
     participantCount.append(int(l['participationStatus']['participantsCount']))
+    participantRate.append(round(l['participationStatus']['participantsCount']/holders_lv2*100,2))
     winnerCount.append(int(l['participationStatus']['winnerCount']))
     citizenNftCount.append(int(l['participationStatus']['citizenNftCount']))
     levelUpPassCount.append(int(l['participationStatus']['levelUpPassCount']))
@@ -176,6 +196,7 @@ for l in land2:
     requiredDON.append(int(l['requiredAsset']['amount']))
     requiredLUP.append(int(l['requiredLevelUpPassCount']))
     participantCount.append(int(l['participationStatus']['participantsCount']))
+    participantRate.append(round(l['participationStatus']['participantsCount']/holders_lv3*100,2))
     winnerCount.append(int(l['participationStatus']['winnerCount']))
     citizenNftCount.append(int(l['participationStatus']['citizenNftCount']))
     levelUpPassCount.append(int(l['participationStatus']['levelUpPassCount']))
@@ -186,6 +207,7 @@ lands = pd.DataFrame({
     'requiredDON': requiredDON,
     'requiredLUP': requiredLUP,
     'participantCount': participantCount,
+    'participantRate': participantRate,
     'winnerCount': winnerCount,
     'citizenNftCount': citizenNftCount,
     'levelUpPassCount': levelUpPassCount
@@ -195,5 +217,22 @@ lands['nftPerParticipant'] = round(lands['citizenNftCount']/lands['participantCo
 lands['lupPerParticipant'] = round(lands['levelUpPassCount']/lands['participantCount'],2)
 
 print(lands)
-print(line_notify("DOSI Land Snapshot at "+snapshot_time))
-create_html_file(lands, snapshot_time)
+
+shows_lv2 = lands.loc[lands['zones'].str.contains('Level 2'), 'participantCount'].sum()
+shows_lv3 = lands.loc[lands['zones'].str.contains('Level 3'), 'participantCount'].sum()
+
+line_message = "DOSI Land Snapshot "+snapshot_time+"\n\n"
+line_message += "Show up rates:\n"
+line_message += "Level 2: "+str(shows_lv2)+"/"+str(holders_lv2)+" ("+str(round(shows_lv2/holders_lv2*100,2))+"%)\n"
+line_message += "Level 3: "+str(shows_lv3)+"/"+str(holders_lv3)+" ("+str(round(shows_lv3/holders_lv3*100,2))+"%)\n"
+for index, row in lands[['zones', 'participantRate']].iterrows():
+    line_message += row['zones']+": "+str(row['participantRate'])+"%\n"
+line_message += "\nEstimated rewards: (Per NFT)|(Per LUP)\n"
+for index, row in lands[['zones', 'zoneRewards', 'winnerCount', 'citizenNftCount', 'levelUpPassCount', 'nftPerParticipant', 'lupPerParticipant']].iterrows():
+    line_message += row['zones']+": "+str(round(row['zoneRewards']*0.7/(row['winnerCount']*row['nftPerParticipant']),2))+" | "+str(round(row['zoneRewards']*0.3/(row['winnerCount']*row['lupPerParticipant']),2))+"\n"
+line_message += "\nEstimated rewards per NFT per 21,900DON:\n"
+for index, row in lands[['zones', 'zoneRewards', 'requiredDON', 'winnerCount', 'citizenNftCount', 'nftPerParticipant']].iterrows():
+    line_message += row['zones']+": "+str(round(row['zoneRewards']*0.7/(row['winnerCount']*row['nftPerParticipant'])/row['requiredDON']*21900,2))+"\n"
+    
+print(line_notify(line_message))
+create_html_file(lands, snapshot_time, holders_lv2, holders_lv3)
