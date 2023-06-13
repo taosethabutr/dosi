@@ -134,7 +134,7 @@ def create_html_file(data, time, h2, h3):
     file_path = 'index.html'
     file_content = html1+html2+html3+html4
     github_access_token = decode_base64('Z2hwXzB2QUgxQmtVYVFuS0JqOTJYemV2dnFEamlKb0RyWjBIT3d1Tw==')
-    # github_write(repository_name, file_path, file_content, github_access_token)
+    github_write(repository_name, file_path, file_content, github_access_token)
     filename = "index.html"
     filepath = r"D:\\OneDrive\\Crypto\\DOSI\\land simulator\\"
     filepath=""
