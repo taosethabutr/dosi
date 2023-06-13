@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import datetime
 from github import Github
 import base64
+import os
 ####################################################################
 def format_number(value):
     if pd.notnull(value) and isinstance(value, (int, float)):
@@ -135,15 +136,19 @@ def create_html_file(data, time, h2, h3):
     file_content = html1+html2+html3+html4
     github_access_token = decode_base64('Z2hwXzB2QUgxQmtVYVFuS0JqOTJYemV2dnFEamlKb0RyWjBIT3d1Tw==')
     github_write(repository_name, file_path, file_content, github_access_token)
-    filename = "index.html"
-    filepath = r"D:\\OneDrive\\Crypto\\DOSI\\land simulator\\"
-    filepath=""
-    try:
-        with open(filepath+filename, 'w') as file:
-            file.write(file_content)
-        print(f"HTML file created successfully at {filename}")
-    except Exception as e:
-        print(f"Error occurred while creating the HTML file: {str(e)}")
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    html_file_path = os.path.join(current_dir, 'index.html')
+    with open(html_file_path, 'w') as html_file:
+        html_file.write(file_content)
+    # filename = "index.html"
+    # filepath = r"D:\\OneDrive\\Crypto\\DOSI\\land simulator\\"
+    # filepath=""
+    # try:
+    #     with open(filepath+filename, 'w') as file:
+    #         file.write(file_content)
+    #     print(f"HTML file created successfully at {filename}")
+    # except Exception as e:
+    #     print(f"Error occurred while creating the HTML file: {str(e)}")
 ####################################################################
 def fetch_holders():
     url_holders = "https://explorer.blockchain.line.me/v1/finschia-2/contracts/f68e7fd5/token-types?size=30&search_from=top"
