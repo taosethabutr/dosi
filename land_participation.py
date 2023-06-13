@@ -40,8 +40,8 @@ def create_image(html, css):
     return image_url
 ####################################################################
 def send_discord(message, image_url):
-    webhook_url = "https://discord.com/api/webhooks/1118077000846946326/S7erj7Nan8Zoe_ICGw8BuMcrA69vQnpoXciM_Tql8XKApQnZ494uLPr-A6mud2FCaDgI" # for testing
-    # webhook_url = "https://discord.com/api/webhooks/1115884800914509864/psxWHTjiuAxNRV_ByIeWyDIB3Xfhp5oLL6xuAa_JQXvIjD2xga2KFyNK2dGIh5ByUuml" # DOSI Insight
+#     webhook_url = "https://discord.com/api/webhooks/1118077000846946326/S7erj7Nan8Zoe_ICGw8BuMcrA69vQnpoXciM_Tql8XKApQnZ494uLPr-A6mud2FCaDgI" # for testing
+    webhook_url = "https://discord.com/api/webhooks/1115884800914509864/psxWHTjiuAxNRV_ByIeWyDIB3Xfhp5oLL6xuAa_JQXvIjD2xga2KFyNK2dGIh5ByUuml" # DOSI Insight
     webhook = DiscordWebhook(url=webhook_url)
 
     webhook.content = message
