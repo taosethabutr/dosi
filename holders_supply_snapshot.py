@@ -37,8 +37,8 @@ def create_image(html, css):
     return image_url
 ####################################################################
 def send_discord(message, image_url):
-#     webhook_url = "https://discord.com/api/webhooks/1118077000846946326/S7erj7Nan8Zoe_ICGw8BuMcrA69vQnpoXciM_Tql8XKApQnZ494uLPr-A6mud2FCaDgI" # for testing
-    webhook_url = "https://discord.com/api/webhooks/1115884800914509864/psxWHTjiuAxNRV_ByIeWyDIB3Xfhp5oLL6xuAa_JQXvIjD2xga2KFyNK2dGIh5ByUuml" # DOSI Insight
+    webhook_url = "https://discord.com/api/webhooks/1118077000846946326/S7erj7Nan8Zoe_ICGw8BuMcrA69vQnpoXciM_Tql8XKApQnZ494uLPr-A6mud2FCaDgI" # for testing
+    # webhook_url = "https://discord.com/api/webhooks/1115884800914509864/psxWHTjiuAxNRV_ByIeWyDIB3Xfhp5oLL6xuAa_JQXvIjD2xga2KFyNK2dGIh5ByUuml" # DOSI Insight
     webhook = DiscordWebhook(url=webhook_url)
 
     webhook.content = message
@@ -133,7 +133,7 @@ def create_html_file(data, time):
     html3 = '''</table></body></html>'''
     
     html = html1+html2+html3
-    discord_message = "## DOSI Citizen Daily Holder & Supply Summary\n`Data as of "+time+"`\n**This message is auto generated from Finschia snapshot data.  If you have any question please contact <@701502808079204375> for more details.*"
+    discord_message = "## :citizen_fly:  DOSI Citizen Daily Holder & Supply Summary\n`Data as of "+time+"`\n**This message is auto generated from Finschia snapshot data.  If you have any question please contact <@701502808079204375> for more details.*"
     send_discord(discord_message, create_image(html,css))
 
 ####################################################################
@@ -292,9 +292,9 @@ def main():
 
     url_stock_robocat = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000c/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBjIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGx0N3dwbDR4dXQ4emdkczVjaGg5ZHJnY215eWVka2N4d2xlc3oifQ=="
 
-    url_stock_mtdz = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000d/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBkIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGx0N3dwbDR4dXQ4emdkczVjaGg5ZHJnY215eWVka2N4d2xlc3oifQ=="
+    url_stock_mtdz = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000d/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBkIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxeHN5Zm1udzhhcHduZzVkc3l1YXRxc3I5a3FwZGd2Y2dhaDNnbTkifQ=="
 
-    url_stock_game = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000e/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBlIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGx0N3dwbDR4dXQ4emdkczVjaGg5ZHJnY215eWVka2N4d2xlc3oifQ=="
+    url_stock_game = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000e/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBlIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxeHN5Zm1udzhhcHduZzVkc3l1YXRxc3I5a3FwZGd2Y2dhaDNnbTkifQ=="
 
     url_stock_goose = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000f/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBmIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGx0N3dwbDR4dXQ4emdkczVjaGg5ZHJnY215eWVka2N4d2xlc3oifQ=="
 
@@ -343,7 +343,7 @@ def main():
 
     url_burn_mtdz_2 = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000d/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBkIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
 
-    url_burn_game = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000e/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBlIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxZ3pkcHl5eDg1NGZ0cGc0aDlmcjM2d3NrOHZ2ZHF0dnU1Zjdxd2EifQ=="
+    url_burn_game = "" # does not exist
 
     url_burn_game_2 = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000e/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBlIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
 
@@ -385,7 +385,7 @@ def main():
     # holders['Burn'][9]+=fetch_stock(url_burn_dog,headers)
     # holders['Burn'][10]+=fetch_stock(url_burn_robocat,headers)
     holders['Burn'][11]+=fetch_stock(url_burn_mtdz,headers)+fetch_stock(url_burn_mtdz_2,headers)
-    holders['Burn'][12]+=fetch_stock(url_burn_game,headers)+fetch_stock(url_burn_game_2,headers)
+    holders['Burn'][12]+=fetch_stock(url_burn_game_2,headers)
     # holders['Burn'][13]+=fetch_stock(url_burn_goose,headers)
     print("Burn Supply Updated")
     
