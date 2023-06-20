@@ -8,42 +8,10 @@
 # link1e9r6el8f9um7xcldd6ne8hglavetuq6tgfgeym
 
 import requests
-from time import sleep
+import time
 import pandas as pd
-from datetime import datetime, time
+from datetime import datetime
 from discord_webhook import DiscordWebhook
-from sqlalchemy import create_engine, text
-
-####################################################################
-def update_columns(df, token):
-    yesterday = get_max_date(token)
-    # update stock mint column
-    df.loc[df['Token type']==token,'stock_mint'] = df.loc[df['Token type']==token,'Stock'].iloc[0] - (df.loc[df['Token type']==token,'Total Supply'].iloc[0] - yesterday['total_supply'].iloc[0])
-    # update daily_mint column
-    if (-(df.loc[df['Token type']==token,'Stock'].iloc[0]-yesterday['stock'].iloc[0])>=0).any():
-        df.loc[df['Token type']==token,'daily_mint'] = -(df.loc[df['Token type']==token,'Stock'].iloc[0]-yesterday['stock'].iloc[0])
-    else: 
-        df.loc[df['Token type']==token,'daily_mint'] = -(df.loc[df['Token type']==token,'stock_mint'].iloc[0]-yesterday['stock_mint'].iloc[0])
-    # update daily_burn column
-    df.loc[df['Token type']==token,'daily_burn'] = df.loc[df['Token type']==token,'Burn'].iloc[0] - yesterday['burn'].iloc[0]
-    return df
-####################################################################
-def get_max_date(token):
-    engine = create_engine('postgresql://dosi:RhEzLhumxyDENT75ULZZ3O6jsy8OFRNb@dpg-ci7cndp8g3n3vm6f3hd0-a.singapore-postgres.render.com/dosistat')
-    query = "SELECT * FROM dosi WHERE token_type = '"+token+"' order by date desc limit 1"
-
-    with engine.begin() as conn:
-        df = pd.read_sql_query(sql=text(query), con=conn)
-
-    return df
-####################################################################
-def write_data(data):
-    engine = create_engine('postgresql://dosi:RhEzLhumxyDENT75ULZZ3O6jsy8OFRNb@dpg-ci7cndp8g3n3vm6f3hd0-a.singapore-postgres.render.com/dosistat')
-    
-    with engine.connect() as connection:
-        for index, row in data.iterrows():
-            sql = f"INSERT INTO dosi (date, token_type, total_supply, stock, burn, holder, transaction, stock_mint, circulation, daily_burn, daily_mint) VALUES ('{row['Date']}', {row['Token type']}, '{row['Total Supply']}', '{row['Stock']}', '{row['Burn']}', '{row['Holder']}', '{row['7Day Transaction']}', '{row['stock_mint']}', '{row['cirulation']}', '{row['daily_burn']}', '{row['daily_mint']}')"
-            connection.execute(sql)
 
 ####################################################################
 def format_number(value):
@@ -65,12 +33,12 @@ def create_image(html, css):
     print("Your image URL is: %s"%image.json()['url'])
     image_url = image.json()['url']
 
-    sleep(3)
+    time.sleep(3)
     return image_url
 ####################################################################
 def send_discord(message, image_url):
-    webhook_url = "https://discord.com/api/webhooks/1118077000846946326/S7erj7Nan8Zoe_ICGw8BuMcrA69vQnpoXciM_Tql8XKApQnZ494uLPr-A6mud2FCaDgI" # for testing
-    # webhook_url = "https://discord.com/api/webhooks/1115884800914509864/psxWHTjiuAxNRV_ByIeWyDIB3Xfhp5oLL6xuAa_JQXvIjD2xga2KFyNK2dGIh5ByUuml" # DOSI Insight
+    # webhook_url = "https://discord.com/api/webhooks/1118077000846946326/S7erj7Nan8Zoe_ICGw8BuMcrA69vQnpoXciM_Tql8XKApQnZ494uLPr-A6mud2FCaDgI" # for testing
+    webhook_url = "https://discord.com/api/webhooks/1115884800914509864/psxWHTjiuAxNRV_ByIeWyDIB3Xfhp5oLL6xuAa_JQXvIjD2xga2KFyNK2dGIh5ByUuml" # DOSI Insight
     webhook = DiscordWebhook(url=webhook_url)
 
     webhook.content = message
@@ -292,7 +260,6 @@ def fetch_stock(url, headers=None):
 def main():
     # timestamp = time.time()
     # timestamp = datetime.now().strftime('%Y%m%d')
-    today = int(datetime.combine(datetime.now().date(), time.min).timestamp())
     timestamp = datetime.now().toordinal()-693594
     snapshot_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" (UTC+0)"
 
@@ -385,7 +352,7 @@ def main():
     headers = {}
 
     print("Update started")
-    holders = fetch_holders(url_holders,headers, today)
+    holders = fetch_holders(url_holders,headers, timestamp)
     print("Holders & Total Supply Updated")
 
     # Update stock supply
@@ -428,19 +395,7 @@ def main():
     
     print("Data update completed")
     print(dosi)
-    # create_html_file(dosi, snapshot_time)
-    
-    print("Start uploading new data to sql server")
-    dosi = dosi[['Date', 'Token type', 'Total Supply', 'Stock', 'Burn', 'Holder', '7Day Transaction', 'circulation']]
-    token_list = dosi['Token type'].tolist()
-    for token in token_list:
-        dosi = update_columns(dosi.copy(), token)
-    dosi['stock_mint'] = dosi['stock_mint'].fillna(0).astype(int)
-    dosi['daily_mint'] = dosi['daily_mint'].fillna(0).astype(int)
-    dosi['daily_burn'] = dosi['daily_burn'].fillna(0).astype(int)
-    write_data(dosi)
-    print(dosi)
-    
+    create_html_file(dosi, snapshot_time)
 
     # filename = "dosi pnl.xlsx"
     # filepath = r"D:\\OneDrive\\Crypto\\DOSI\\"
