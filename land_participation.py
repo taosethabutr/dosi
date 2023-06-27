@@ -224,12 +224,12 @@ line_message += "Level 2: "+str(shows_lv2)+"/"+str(holders_lv2)+" ("+str(round(s
 line_message += "Level 3: "+str(shows_lv3)+"/"+str(holders_lv3)+" ("+str(round(shows_lv3/holders_lv3*100,2))+"%)\n"
 for index, row in lands[['zones', 'participantRate']].iterrows():
     line_message += row['zones']+": "+str(row['participantRate'])+"%\n"
-line_message += "\nEstimated rewards: (Per NFT)|(Per LUP)\n"
+line_message += "\nEstimated rewards (after tax): (Per NFT)|(Per LUP)\n"
 for index, row in lands[['zones', 'zoneRewards', 'winnerCount', 'citizenNftCount', 'levelUpPassCount', 'nftPerParticipant', 'lupPerParticipant']].iterrows():
-    line_message += row['zones']+": "+str(round(row['zoneRewards']*0.7/(row['winnerCount']*row['nftPerParticipant']),2))+" | "+str(round(row['zoneRewards']*0.3/(row['winnerCount']*row['lupPerParticipant']),2))+"\n"
-line_message += "\nEstimated rewards per NFT per 21,900DON:\n"
+    line_message += row['zones']+": "+str(round(row['zoneRewards']*0.7/(row['winnerCount']*row['nftPerParticipant'])*0.7,6))+" | "+str(round(row['zoneRewards']*0.3/(row['winnerCount']*row['lupPerParticipant'])*0.7,6))+"\n"
+line_message += "\nEstimated rewards per NFT per 21,900DON (after tax):\n"
 for index, row in lands[['zones', 'zoneRewards', 'requiredDON', 'winnerCount', 'citizenNftCount', 'nftPerParticipant']].iterrows():
-    line_message += row['zones']+": "+str(round(row['zoneRewards']*0.7/(row['winnerCount']*row['nftPerParticipant'])/row['requiredDON']*21900,2))+"\n"
+    line_message += row['zones']+": "+str(round(row['zoneRewards']*0.7/(row['winnerCount']*row['nftPerParticipant'])/row['requiredDON']*21900*0.7,6))+"\n"
     
 print(line_notify(line_message))
 create_html_file(lands, snapshot_time, holders_lv2, holders_lv3)
