@@ -156,8 +156,8 @@ def fetch_holders():
     
 ####################################################################
 snapshot_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" (UTC+0)"
-land1_url = "https://citizen.dosi.world/api/citizen/v1/lands/7"
-land2_url = "https://citizen.dosi.world/api/citizen/v1/lands/8"
+land1_url = "https://citizen.dosi.world/api/citizen/v1/lands/10"
+land2_url = "https://citizen.dosi.world/api/citizen/v1/lands/11"
 headers = {
     "cookie": 'DOSI_SES=enUxR/n79pxlSlY2Njif4qz9HGtPrj9RtweygRonEohlQe03jcINQK9i7JDQuIP8+y7n41M1C35LyinpxR7ZMvg6VKVrDc+a6S3b3QF57l+DE1ebJzFdlVZoARUH+38qNgWzGCJnwLpc/jt1cD7j1mQFtDbmSqqbc6YTxzmz4vHBi/3n2q0hXDvHJ9PCA51/B/2l6a/TInF9a2mmYmun6tiL5rSyDaM6WRx6kQ46IgupeOkMLQ6xdFbg8vGB1Z9xlQGZPMLwUvqKJbbEe1eBM5ikXv4niyB/RlOKNTYuQmZIAhQNyIZ/dCSmo6OFx+0rJNd25GZXX8PsAgMRhcoycKvoDaiUJE0DWQHezKeaVo4=;'
 }
