@@ -40,7 +40,7 @@ def create_image(html, css):
     return image_url
 ####################################################################
 def send_discord(message, image_url):
-#     webhook_url = "https://discord.com/api/webhooks/1118077000846946326/S7erj7Nan8Zoe_ICGw8BuMcrA69vQnpoXciM_Tql8XKApQnZ494uLPr-A6mud2FCaDgI" # for testing
+    # webhook_url = "https://discord.com/api/webhooks/1118077000846946326/S7erj7Nan8Zoe_ICGw8BuMcrA69vQnpoXciM_Tql8XKApQnZ494uLPr-A6mud2FCaDgI" # for testing
     webhook_url = "https://discord.com/api/webhooks/1115884800914509864/psxWHTjiuAxNRV_ByIeWyDIB3Xfhp5oLL6xuAa_JQXvIjD2xga2KFyNK2dGIh5ByUuml" # DOSI Insight
     webhook = DiscordWebhook(url=webhook_url)
 
@@ -50,7 +50,7 @@ def send_discord(message, image_url):
 
     response = webhook.execute()
 ####################################################################
-def create_html_file(data, time, h2, h3):
+def create_html_file(data, time, h2, h3, h4):
     css = '''
         h1, p {
             margin: 5px 0px 10px 0px;
@@ -99,7 +99,7 @@ def create_html_file(data, time, h2, h3):
     '''
     html1 = '''
         <body>
-        <h1><img src="https://vos.line-scdn.net/dosi-citizen-prod/citizen-web/assets/land.396cfbaec7b40fcff9c9.png"> DOSI Land Snapshot</h1>
+        <h1><img src="https://vos.line-scdn.net/dosi-citizen-prod/citizen-web/assets/land.396cfbaec7b40fcff9c9.png"> DOSI Land Snapshot Round '''+land_round+'''</h1>
         <small>Data snapshot at '''+time+'''</small>
         <table id="dosi-land">
             <tr>
@@ -135,7 +135,9 @@ def create_html_file(data, time, h2, h3):
   
     html3 = '''</table>
     <p>Level 2 Participation: '''+format_number(data.loc[data['zones'].str.contains('Level 2'), 'participantCount'].sum())+'''/'''+format_number(h2)+''' ('''+str(round(data.loc[data['zones'].str.contains('Level 2'), 'participantCount'].sum()/h2*100,2))+'''%)<br>
-    Level 3 Participation: '''+format_number(data.loc[data['zones'].str.contains('Level 3'), 'participantCount'].sum())+'''/'''+format_number(h3)+''' ('''+str(round(data.loc[data['zones'].str.contains('Level 3'), 'participantCount'].sum()/h3*100,2))+'''%)</p>
+    Level 3 Participation: '''+format_number(data.loc[data['zones'].str.contains('Level 3'), 'participantCount'].sum())+'''/'''+format_number(h3)+''' ('''+str(round(data.loc[data['zones'].str.contains('Level 3'), 'participantCount'].sum()/h3*100,2))+'''%)<br>
+    Level 4 Participation: '''+format_number(data.loc[data['zones'].str.contains('Level 4'), 'participantCount'].sum())+'''/'''+format_number(h4)+''' ('''+str(round(data.loc[data['zones'].str.contains('Level 4'), 'participantCount'].sum()/h4*100,2))+'''%)
+    </p>
     '''
     html4 = '''</body>
     '''
@@ -147,20 +149,23 @@ def fetch_holders():
     holders = requests.get(url_holders).json().get('token_types')
     lv2_holders = 0
     lv3_holders = 0
+    lv4_holders = 0
     for holder in holders:
         if holder['token_type']=='10000003':
             lv2_holders = holder['holder_count']
         elif holder['token_type']=='10000004':
             lv3_holders = holder['holder_count']
-    return lv2_holders, lv3_holders
+        elif holder['token_type']=='10000005':
+            lv4_holders = holder['holder_count']
+    return lv2_holders, lv3_holders, lv4_holders
     
 ####################################################################
 snapshot_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" (UTC+0)"
+land_round = '5'
 land1_url = "https://citizen.dosi.world/api/citizen/v1/lands/13"
 land2_url = "https://citizen.dosi.world/api/citizen/v1/lands/14"
-headers = {
-    "cookie": 'DOSI_SES=enUxR/n79pxlSlY2Njif4qz9HGtPrj9RtweygRonEohlQe03jcINQK9i7JDQuIP8+y7n41M1C35LyinpxR7ZMvg6VKVrDc+a6S3b3QF57l+DE1ebJzFdlVZoARUH+38qNgWzGCJnwLpc/jt1cD7j1mQFtDbmSqqbc6YTxzmz4vHBi/3n2q0hXDvHJ9PCA51/B/2l6a/TInF9a2mmYmun6tiL5rSyDaM6WRx6kQ46IgupeOkMLQ6xdFbg8vGB1Z9xlQGZPMLwUvqKJbbEe1eBM5ikXv4niyB/RlOKNTYuQmZIAhQNyIZ/dCSmo6OFx+0rJNd25GZXX8PsAgMRhcoycKvoDaiUJE0DWQHezKeaVo4=;'
-}
+land3_url = "https://citizen.dosi.world/api/citizen/v1/lands/15"
+headers = ""
 
 zones=[]
 zoneRewards=[]
@@ -172,7 +177,7 @@ winnerCount=[]
 citizenNftCount=[]
 levelUpPassCount=[]
 
-holders_lv2, holders_lv3 = fetch_holders()
+holders_lv2, holders_lv3, holders_lv4 = fetch_holders()
 
 land1 = requests.get(land1_url, headers=headers).json().get('zoneList')
 for l in land1:
@@ -198,6 +203,18 @@ for l in land2:
     citizenNftCount.append(int(l['participationStatus']['citizenNftCount']))
     levelUpPassCount.append(int(l['participationStatus']['levelUpPassCount']))
 
+land3 = requests.get(land3_url, headers=headers).json().get('zoneList')
+for l in land3:
+    zones.append("Level 4 Zone "+l['zoneType'][-1:])
+    zoneRewards.append(int(l['rewardAmount']))
+    requiredDON.append(int(l['requiredAsset']['amount']))
+    requiredLUP.append(int(l['requiredLevelUpPassCount']))
+    participantCount.append(int(l['participationStatus']['participantsCount']))
+    participantRate.append(round(l['participationStatus']['participantsCount']/holders_lv4*100,2))
+    winnerCount.append(int(l['participationStatus']['winnerCount']))
+    citizenNftCount.append(int(l['participationStatus']['citizenNftCount']))
+    levelUpPassCount.append(int(l['participationStatus']['levelUpPassCount']))
+
 lands = pd.DataFrame({
     'zones': zones,
     'zoneRewards': zoneRewards,
@@ -217,11 +234,13 @@ print(lands)
 
 shows_lv2 = lands.loc[lands['zones'].str.contains('Level 2'), 'participantCount'].sum()
 shows_lv3 = lands.loc[lands['zones'].str.contains('Level 3'), 'participantCount'].sum()
+shows_lv4 = lands.loc[lands['zones'].str.contains('Level 4'), 'participantCount'].sum()
 
 line_message = "DOSI Land Snapshot "+snapshot_time+"\n\n"
 line_message += "Show up rates:\n"
 line_message += "Level 2: "+str(shows_lv2)+"/"+str(holders_lv2)+" ("+str(round(shows_lv2/holders_lv2*100,2))+"%)\n"
 line_message += "Level 3: "+str(shows_lv3)+"/"+str(holders_lv3)+" ("+str(round(shows_lv3/holders_lv3*100,2))+"%)\n"
+line_message += "Level 4: "+str(shows_lv4)+"/"+str(holders_lv4)+" ("+str(round(shows_lv4/holders_lv4*100,2))+"%)\n"
 for index, row in lands[['zones', 'participantRate']].iterrows():
     line_message += row['zones']+": "+str(row['participantRate'])+"%\n"
 line_message += "\nEstimated rewards per NFT (after tax)\n"
@@ -237,4 +256,4 @@ for index, row in lands[['zones', 'zoneRewards', 'requiredDON', 'winnerCount', '
     line_message += row['zones']+": "+str(round(row['zoneRewards']*0.7/(row['winnerCount']*row['nftPerParticipant'])/row['requiredDON']*21900*0.7,2))+"\n"
     
 print(line_notify(line_message))
-create_html_file(lands, snapshot_time, holders_lv2, holders_lv3)
+create_html_file(lands, snapshot_time, holders_lv2, holders_lv3, holders_lv4)
