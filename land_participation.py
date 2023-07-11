@@ -40,8 +40,8 @@ def create_image(html, css):
     return image_url
 ####################################################################
 def send_discord(message, image_url):
-    # webhook_url = "https://discord.com/api/webhooks/1118077000846946326/S7erj7Nan8Zoe_ICGw8BuMcrA69vQnpoXciM_Tql8XKApQnZ494uLPr-A6mud2FCaDgI" # for testing
-    webhook_url = "https://discord.com/api/webhooks/1115884800914509864/psxWHTjiuAxNRV_ByIeWyDIB3Xfhp5oLL6xuAa_JQXvIjD2xga2KFyNK2dGIh5ByUuml" # DOSI Insight
+    webhook_url = "https://discord.com/api/webhooks/1118077000846946326/S7erj7Nan8Zoe_ICGw8BuMcrA69vQnpoXciM_Tql8XKApQnZ494uLPr-A6mud2FCaDgI" # for testing
+    # webhook_url = "https://discord.com/api/webhooks/1115884800914509864/psxWHTjiuAxNRV_ByIeWyDIB3Xfhp5oLL6xuAa_JQXvIjD2xga2KFyNK2dGIh5ByUuml" # DOSI Insight
     webhook = DiscordWebhook(url=webhook_url)
 
     webhook.content = message
@@ -141,7 +141,7 @@ def create_html_file(data, time, h2, h3, h4):
     '''
     html4 = '''</body>
     '''
-    discord_message = "## :cityscape: Land Snapshot :cityscape:\n`Data as of "+time+"`\n**This message is auto generated every 4hr during Land participation period.  If you have any question please contact <@701502808079204375> for more details.*"
+    discord_message = "## :cityscape: Land Snapshot Round "+land_round+" :cityscape:\n`Data as of "+time+"`\n**This message is auto generated every 4hr during Land participation period.  \nIf you have any question please contact <@701502808079204375> for more details.*"
     send_discord(discord_message, create_image(html1+html2+html3+html4,css))
 ####################################################################
 def fetch_holders():
