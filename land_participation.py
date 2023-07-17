@@ -161,10 +161,10 @@ def fetch_holders():
     
 ####################################################################
 snapshot_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" (UTC+0)"
-land_round = '5'
-land1_url = "https://citizen.dosi.world/api/citizen/v1/lands/13"
-land2_url = "https://citizen.dosi.world/api/citizen/v1/lands/14"
-land3_url = "https://citizen.dosi.world/api/citizen/v1/lands/15"
+land_round = '6'
+land1_url = "https://citizen.dosi.world/api/citizen/v1/lands/16"
+land2_url = "https://citizen.dosi.world/api/citizen/v1/lands/17"
+land3_url = "https://citizen.dosi.world/api/citizen/v1/lands/18"
 headers = ""
 
 zones=[]
