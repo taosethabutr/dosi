@@ -5,6 +5,7 @@
 # Burn กระเป๋าเก็บอ้วนที่เผาทิ้งแล้ว
 # เดิม link1gzdpyyx854ftpg4h9fr36wsk8vvdqtvu5f7qvz
 # ใหม่ link1hdujvs3hjfvtm0lujulrnrpaxcygut7lva2clf
+# Citizen Friends Burn link1hvffqwtg82zru6fnz0kwclezz402480zkw0am5
 # Marketplace อ้วนที่ตั้งขายอยู่
 # link1e9r6el8f9um7xcldd6ne8hglavetuq6tgfgeym
 
@@ -38,8 +39,8 @@ def create_image(html, css):
     return image_url
 ####################################################################
 def send_discord(message, image_url):
-    # webhook_url = "https://discord.com/api/webhooks/1118077000846946326/S7erj7Nan8Zoe_ICGw8BuMcrA69vQnpoXciM_Tql8XKApQnZ494uLPr-A6mud2FCaDgI" # for testing
-    webhook_url = "https://discord.com/api/webhooks/1115884800914509864/psxWHTjiuAxNRV_ByIeWyDIB3Xfhp5oLL6xuAa_JQXvIjD2xga2KFyNK2dGIh5ByUuml" # DOSI Insight
+    webhook_url = "https://discord.com/api/webhooks/1118077000846946326/S7erj7Nan8Zoe_ICGw8BuMcrA69vQnpoXciM_Tql8XKApQnZ494uLPr-A6mud2FCaDgI" # for testing
+    # webhook_url = "https://discord.com/api/webhooks/1115884800914509864/psxWHTjiuAxNRV_ByIeWyDIB3Xfhp5oLL6xuAa_JQXvIjD2xga2KFyNK2dGIh5ByUuml" # DOSI Insight
     webhook = DiscordWebhook(url=webhook_url)
 
     webhook.content = message
@@ -151,15 +152,15 @@ def fetch_holders(url, headers=None, timestamp=None):
         holders = json_data.get('token_types')
 
         cleaned_holders_data = {
-            'Date': [timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp],
-            'Token Group': ['Level 1', 'Level 2-4', 'Level 2-4', 'Level 2-4', 'Friends', 'Level 1', 'Level 1', 'Level 1', 'Level 1', 'Friends', 'Friends', 'Level 1', 'Level 1', 'Friends', 'Level 1', 'Level 1', 'Friends'],
-            'Token type': ['Citizen Lv1', 'Citizen Lv2', 'Citizen Lv3', 'Citizen Lv4', 'Citizen Cat', 'Barranquilla', 'CitizenFavor', 'LinerCitizen', 'Hellbound', 'Citizen Dog', 'Citizen RoboCat', 'Meta Toy Dragonz', 'Game DOSI Citizen', 'Citizen Goose', 'Citizen Heart', 'Citizen SNKRZ', 'Citizen Chameleon'],
-            'Token Image': ['https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000100000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000300000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000400000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000500000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000600000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000700000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000800000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000200000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000a00000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000b00000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000c00000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000d00000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000e00000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000f00000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000001000000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000001100000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000001300000001'],
-            'Total Supply': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-            'Stock': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-            'Burn': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-            'Holder': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-            '7Day Transaction': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            'Date': [timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp, timestamp],
+            'Token Group': ['Citizen Lv1', 'Citizen Lv2', 'Citizen Lv3', 'Citizen Lv4', 'Friends Cat', 'Citizen Lv1', 'Citizen Lv1', 'Citizen Lv1', 'Citizen Lv1', 'Friends Dog', 'Friends Cat', 'Citizen Lv1', 'Citizen Lv1', 'Friends Goose', 'Citizen Lv1', 'Citizen Lv1', 'Friends Chameleon', 'Citizen Lv1', 'Friends Cat', 'Friends Dog', 'Friends Goose', 'Friends Chameleon'],
+            'Token type': ['Citizen Lv1', 'Citizen Lv2', 'Citizen Lv3', 'Citizen Lv4', 'Kitten', 'Barranquilla', 'Citizen Favor', 'Liner Citizen', 'Hellbound', 'Puppy', 'RoboCat', 'Meta Toy Dragonz', 'Game DOSI Citizen', 'Gosling', 'Citizen Heart', 'Citizen SNKRZ', 'Pygmy', 'Citizen Pala', 'Flying Kitty', 'Flying Doggie', 'Flying Goose', 'Flying Jacksons'],
+            'Token Image': ['https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000100000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000300000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000400000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000500000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000600000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000700000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000800000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000200000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000a00000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000b00000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000c00000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000d00000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000e00000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000000f00000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000001000000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000001100000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000001300000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000001400000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000001500000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000001600000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000001700000001', 'https://lbw-impro.line-apps.com/v1/daphne/token/f68e7fd5/1000001800000001'],
+            'Total Supply': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            'Stock': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            'Burn': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            'Holder': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            '7Day Transaction': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         }
 
         for holder in holders:
@@ -248,6 +249,31 @@ def fetch_holders(url, headers=None, timestamp=None):
                 cleaned_holders_data['Total Supply'][16]+=int(holder['total_supply']['value'])
                 cleaned_holders_data['Holder'][16]+=holder['holder_count']
                 cleaned_holders_data['7Day Transaction'][16]+=holder['num_txs_latest']
+            # Pala
+            elif holder['token_type']=='10000014':
+                cleaned_holders_data['Total Supply'][17]+=int(holder['total_supply']['value'])
+                cleaned_holders_data['Holder'][17]+=holder['holder_count']
+                cleaned_holders_data['7Day Transaction'][17]+=holder['num_txs_latest']
+            # Flying Cat
+            elif holder['token_type']=='10000015':
+                cleaned_holders_data['Total Supply'][18]+=int(holder['total_supply']['value'])
+                cleaned_holders_data['Holder'][18]+=holder['holder_count']
+                cleaned_holders_data['7Day Transaction'][18]+=holder['num_txs_latest']
+            # Flying Dog
+            elif holder['token_type']=='10000016':
+                cleaned_holders_data['Total Supply'][19]+=int(holder['total_supply']['value'])
+                cleaned_holders_data['Holder'][19]+=holder['holder_count']
+                cleaned_holders_data['7Day Transaction'][19]+=holder['num_txs_latest']
+            # Flying Goose
+            elif holder['token_type']=='10000017':
+                cleaned_holders_data['Total Supply'][20]+=int(holder['total_supply']['value'])
+                cleaned_holders_data['Holder'][20]+=holder['holder_count']
+                cleaned_holders_data['7Day Transaction'][20]+=holder['num_txs_latest']
+            # Flying Chameleon
+            elif holder['token_type']=='10000018':
+                cleaned_holders_data['Total Supply'][21]+=int(holder['total_supply']['value'])
+                cleaned_holders_data['Holder'][21]+=holder['holder_count']
+                cleaned_holders_data['7Day Transaction'][21]+=holder['num_txs_latest']
         
         return cleaned_holders_data
     else:
@@ -322,7 +348,17 @@ def main():
 
     url_stock_chameleon = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000013/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDEzIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGx0N3dwbDR4dXQ4emdkczVjaGg5ZHJnY215eWVka2N4d2xlc3oifQ=="
 
-    ###########################
+    url_stock_pala = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000014/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDE0In0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxeHN5Zm1udzhhcHduZzVkc3l1YXRxc3I5a3FwZGd2Y2dhaDNnbTkifQ=="
+
+    url_stock_fcat = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000015/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDE1In0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxeHN5Zm1udzhhcHduZzVkc3l1YXRxc3I5a3FwZGd2Y2dhaDNnbTkifQ=="
+
+    url_stock_fdog = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000016/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDE2In0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxeHN5Zm1udzhhcHduZzVkc3l1YXRxc3I5a3FwZGd2Y2dhaDNnbTkifQ=="
+
+    url_stock_fgoose = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000017/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDE3In0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxeHN5Zm1udzhhcHduZzVkc3l1YXRxc3I5a3FwZGd2Y2dhaDNnbTkifQ=="
+
+    url_stock_fchameleon = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000018/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDE4In0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxeHN5Zm1udzhhcHduZzVkc3l1YXRxc3I5a3FwZGd2Y2dhaDNnbTkifQ=="
+
+    #######################################################################################################################################
     url_burn_lv1_01 = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000001/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDAxIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxZ3pkcHl5eDg1NGZ0cGc0aDlmcjM2d3NrOHZ2ZHF0dnU1Zjdxd2EifQ=="
 
     url_burn_lv1_01_2 = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000001/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDAxIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
@@ -343,7 +379,7 @@ def main():
 
     url_burn_lv4 = "" # there's no lv4 burn
 
-    url_burn_cat = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000006/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDA2In0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
+    url_burn_cat = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000006/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDA2In0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaHZmZnF3dGc4MnpydTZmbnowa3djbGV6ejQwMjQ4MHprdzBhbTYifQ=="
 
     url_burn_barranquilla = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000007/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDA3In0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxZ3pkcHl5eDg1NGZ0cGc0aDlmcjM2d3NrOHZ2ZHF0dnU1Zjdxd2EifQ=="
 
@@ -361,9 +397,9 @@ def main():
 
     url_burn_hellbound_2 = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000a/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBhIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
 
-    url_burn_dog = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000b/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBiIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
+    url_burn_dog = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000b/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBiIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaHZmZnF3dGc4MnpydTZmbnowa3djbGV6ejQwMjQ4MHprdzBhbTYifQ=="
 
-    url_burn_robocat = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000c/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBjIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
+    # url_burn_robocat = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000c/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBjIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
 
     url_burn_mtdz = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000d/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBkIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxZ3pkcHl5eDg1NGZ0cGc0aDlmcjM2d3NrOHZ2ZHF0dnU1Zjdxd2EifQ=="
 
@@ -373,13 +409,15 @@ def main():
 
     url_burn_game_2 = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000e/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBlIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
 
-    url_burn_goose = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000f/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBmIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
+    url_burn_goose = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000f/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBmIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaHZmZnF3dGc4MnpydTZmbnowa3djbGV6ejQwMjQ4MHprdzBhbTYifQ=="
 
     url_burn_heart = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000010/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDEwIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
 
     url_burn_snkrz = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000011/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDExIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
 
-    url_burn_chameleon = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000013/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDEzIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
+    url_burn_chameleon = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000013/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDEzIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaHZmZnF3dGc4MnpydTZmbnowa3djbGV6ejQwMjQ4MHprdzBhbTYifQ=="
+
+    url_burn_pala = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/10000014/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDE0In0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
 
     headers = {}
 
@@ -405,6 +443,11 @@ def main():
     holders['Stock'][14]+=fetch_stock(url_stock_heart,headers)
     holders['Stock'][15]+=fetch_stock(url_stock_snkrz,headers)
     holders['Stock'][16]+=fetch_stock(url_stock_chameleon,headers)
+    holders['Stock'][17]+=fetch_stock(url_stock_pala,headers)
+    holders['Stock'][18]+=fetch_stock(url_stock_fcat,headers)
+    holders['Stock'][19]+=fetch_stock(url_stock_fdog,headers)
+    holders['Stock'][20]+=fetch_stock(url_stock_fgoose,headers)
+    holders['Stock'][21]+=fetch_stock(url_stock_fchameleon,headers)
     print("Stock Supply Updated")
 
     # Update burn supply
@@ -412,25 +455,30 @@ def main():
     holders['Burn'][1]+=fetch_stock(url_burn_lv2,headers)+fetch_stock(url_burn_lv2_2,headers)
     holders['Burn'][2]+=fetch_stock(url_burn_lv3,headers)+fetch_stock(url_burn_lv3_2,headers)
     # holders['Burn'][3]+=fetch_stock(url_burn_lv4,headers)
-    # holders['Burn'][4]+=fetch_stock(url_burn_cat,headers)
+    holders['Burn'][4]+=fetch_stock(url_burn_cat,headers)
     holders['Burn'][5]+=fetch_stock(url_burn_barranquilla,headers)+fetch_stock(url_burn_barranquilla_2,headers)
     holders['Burn'][6]+=fetch_stock(url_burn_favor,headers)+fetch_stock(url_burn_favor_2,headers)
     holders['Burn'][7]+=fetch_stock(url_burn_liner,headers)+fetch_stock(url_burn_liner_2,headers)
     holders['Burn'][8]+=fetch_stock(url_burn_hellbound,headers)+fetch_stock(url_burn_hellbound_2,headers)
-    # holders['Burn'][9]+=fetch_stock(url_burn_dog,headers)
+    holders['Burn'][9]+=fetch_stock(url_burn_dog,headers)
     # holders['Burn'][10]+=fetch_stock(url_burn_robocat,headers)
     holders['Burn'][11]+=fetch_stock(url_burn_mtdz,headers)+fetch_stock(url_burn_mtdz_2,headers)
     holders['Burn'][12]+=fetch_stock(url_burn_game_2,headers)
-    # holders['Burn'][13]+=fetch_stock(url_burn_goose,headers)
+    holders['Burn'][13]+=fetch_stock(url_burn_goose,headers)
     holders['Burn'][14]+=fetch_stock(url_burn_heart,headers)
     holders['Burn'][15]+=fetch_stock(url_burn_snkrz,headers)
-    # holders['Burn'][16]+=fetch_stock(url_burn_chameleon,headers)
+    holders['Burn'][16]+=fetch_stock(url_burn_chameleon,headers)
+    # holders['Burn'][17]+=fetch_stock(url_burn_pala,headers)
+    # holders['Burn'][18]+=fetch_stock(url_burn_fcat,headers)
+    # holders['Burn'][19]+=fetch_stock(url_burn_fdog,headers)
+    # holders['Burn'][20]+=fetch_stock(url_burn_fgoose,headers)
+    # holders['Burn'][21]+=fetch_stock(url_burn_fchameleon,headers)
     print("Burn Supply Updated")
 
     
     dosi = pd.DataFrame(holders)
     dosi['circulation'] = dosi['Total Supply']-dosi['Stock']-dosi['Burn']
-    dosi = dosi.sort_values(by=['Token Group', 'Total Supply'], ascending=[True, False]).reset_index(drop=True)
+    dosi = dosi.sort_values(by=['Token Group', 'circulation'], ascending=[True, False]).reset_index(drop=True)
     
     print("Data update completed")
     print(dosi)
