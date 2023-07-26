@@ -468,7 +468,7 @@ def main():
     holders['Burn'][14]+=fetch_stock(url_burn_heart,headers)
     holders['Burn'][15]+=fetch_stock(url_burn_snkrz,headers)
     holders['Burn'][16]+=fetch_stock(url_burn_chameleon,headers)
-    # holders['Burn'][17]+=fetch_stock(url_burn_pala,headers)
+    holders['Burn'][17]+=fetch_stock(url_burn_pala,headers)
     # holders['Burn'][18]+=fetch_stock(url_burn_fcat,headers)
     # holders['Burn'][19]+=fetch_stock(url_burn_fdog,headers)
     # holders['Burn'][20]+=fetch_stock(url_burn_fgoose,headers)
