@@ -134,7 +134,7 @@ def create_html_file(data, time):
     
     html = html1+html2+html3
     discord_message = "## DOSI Citizen Daily Holder & Supply Summary\n`Data as of "+time+"`\n**This message is auto generated from Finschia snapshot data.  If you have any question please contact <@701502808079204375> for more details.*"
-    # send_discord(discord_message, create_image(html,css))
+    send_discord(discord_message, create_image(html,css))
 
 ####################################################################
 # fetch holders & transactions data
