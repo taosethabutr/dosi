@@ -113,7 +113,6 @@ def create_html_file(data, time):
                 <th>Group</th>
                 <th>Token</th>
                 <th>Holders 👥</th>
-                <th>Supply 🏬</th>
                 <th>Circulation 📦</th>
                 <th>Burned 🔥</th>
             </tr>
@@ -126,7 +125,6 @@ def create_html_file(data, time):
                 <td>'''+row['Token Group']+'''</td>
                 <td><img src="'''+row['Token Image']+'''"> '''+row['Token type']+'''</td>
                 <td>'''+format_number(row['Holder'])+'''</td>
-                <td>'''+format_number(row['Total Supply'])+'''</td>
                 <td>'''+format_number(row['circulation'])+'''</td>
                 <td>'''+format_number(row['Burn'])+'''</td>
             </tr>
@@ -136,7 +134,7 @@ def create_html_file(data, time):
     
     html = html1+html2+html3
     discord_message = "## DOSI Citizen Daily Holder & Supply Summary\n`Data as of "+time+"`\n**This message is auto generated from Finschia snapshot data.  If you have any question please contact <@701502808079204375> for more details.*"
-    send_discord(discord_message, create_image(html,css))
+    # send_discord(discord_message, create_image(html,css))
 
 ####################################################################
 # fetch holders & transactions data
