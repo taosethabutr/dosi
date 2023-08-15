@@ -256,7 +256,7 @@ for index, row in lands[['zones', 'zoneRewards', 'winnerCount', 'citizenNftCount
         line_message += row['zones']+": "+str(round(reward*0.9,4))+" - "+str(round(reward*1.1,4))+"\n"
 line_message += "\nEstimated rewards per NFT per 21,900DON (after tax):\n"
 for index, row in lands[['zones', 'zoneRewards', 'requiredDON', 'winnerCount', 'citizenNftCount', 'nftPerParticipant']].iterrows():
-    if (row['winnerCount']*row['nftPerParticipant'])/row['requiredDON']*21900*0.7,2))>0:
+    if (row['winnerCount']*row['nftPerParticipant'])/row['requiredDON']*21900*0.7>0:
         line_message += row['zones']+": "+str(round(row['zoneRewards']*0.7/(row['winnerCount']*row['nftPerParticipant'])/row['requiredDON']*21900*0.7,2))+"\n"
 print(line_notify(line_message))
 create_html_file(lands, snapshot_time, holders_lv2, holders_lv3, holders_lv4)
