@@ -50,7 +50,7 @@ def send_discord(message, image_url):
 
     response = webhook.execute()
 ####################################################################
-def create_html_file(data, time, h2, h3, h4):
+def create_html_file(data, time, h2, h3, h4, timestamp):
     css = '''
         h1, p {
             margin: 5px 0px 10px 0px;
@@ -141,7 +141,7 @@ def create_html_file(data, time, h2, h3, h4):
     '''
     html4 = '''</body>
     '''
-    discord_message = "## :cityscape: Land Snapshot Round "+land_round+" :cityscape:\n`Data as of "+time+"`\n**This message is auto generated every 4hr during Land participation period.  \nIf you have any question please contact <@701502808079204375> for more details.*"
+    discord_message = "## :cityscape: Land Snapshot Round "+land_round+" :cityscape:\n`Data as of `<t:"+str(int(timestamp))+":f>` (your local time.)`\n**This message is auto generated every 4hr during Land participation period.  \nIf you have any question please contact <@701502808079204375> for more details.*"
     send_discord(discord_message, create_image(html1+html2+html3+html4,css))
 ####################################################################
 def fetch_holders():
@@ -161,10 +161,11 @@ def fetch_holders():
     
 ####################################################################
 snapshot_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" (UTC+0)"
-land_round = '10'
-land1_url = "https://citizen.dosi.world/api/citizen/v1/lands/28"
-land2_url = "https://citizen.dosi.world/api/citizen/v1/lands/29"
-land3_url = "https://citizen.dosi.world/api/citizen/v1/lands/30"
+unix_timestamp = time.time()
+land_round = '11'
+land1_url = "https://citizen.dosi.world/api/citizen/v1/lands/31"
+land2_url = "https://citizen.dosi.world/api/citizen/v1/lands/32"
+land3_url = "https://citizen.dosi.world/api/citizen/v1/lands/33"
 headers = ""
 
 zones=[]
@@ -259,4 +260,4 @@ for index, row in lands[['zones', 'zoneRewards', 'requiredDON', 'winnerCount', '
     if (row['winnerCount']*row['nftPerParticipant'])/row['requiredDON']*21900*0.7>0:
         line_message += row['zones']+": "+str(round(row['zoneRewards']*0.7/(row['winnerCount']*row['nftPerParticipant'])/row['requiredDON']*21900*0.7,2))+"\n"
 print(line_notify(line_message))
-create_html_file(lands, snapshot_time, holders_lv2, holders_lv3, holders_lv4)
+create_html_file(lands, snapshot_time, holders_lv2, holders_lv3, holders_lv4, unix_timestamp)
