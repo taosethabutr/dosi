@@ -1,7 +1,7 @@
 import requests
 import time
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timezone
 from discord_webhook import DiscordWebhook
 import base64
 ####################################################################
@@ -99,7 +99,7 @@ def create_html_file(data, time, h2, h3, h4, timestamp):
     '''
     html1 = '''
         <body>
-        <h1><img src="https://vos.line-scdn.net/dosi-citizen-prod/citizen-web/assets/land.396cfbaec7b40fcff9c9.png"> DOSI Land Snapshot Round '''+land_round+'''</h1>
+        <h1><img src="https://vos.line-scdn.net/dosi-citizen-prod/citizen-web/assets/land.396cfbaec7b40fcff9c9.png"> DOSI Land Snapshot Round '''+str(land_round)+'''</h1>
         <small>Data snapshot at '''+time+'''</small>
         <table id="dosi-land">
             <tr>
@@ -141,7 +141,7 @@ def create_html_file(data, time, h2, h3, h4, timestamp):
     '''
     html4 = '''</body>
     '''
-    discord_message = "## :cityscape: Land Snapshot Round "+land_round+" :cityscape:\n`Data as of `<t:"+str(int(timestamp))+":f>` (your local time.)`\n**This message is auto generated every 4hr during Land participation period.  \nIf you have any question please contact <@701502808079204375> for more details.*"
+    discord_message = "## :cityscape: Land Snapshot Round "+str(land_round)+" :cityscape:\n`Data as of `<t:"+str(int(timestamp))+":f>` (your local time.)`\n**This message is auto generated every 4hr during Land participation period.  \nIf you have any question please contact <@701502808079204375> for more details.*"
     send_discord(discord_message, create_image(html1+html2+html3+html4,css))
 ####################################################################
 def fetch_holders():
@@ -158,14 +158,20 @@ def fetch_holders():
         elif holder['token_type']=='10000005':
             lv4_holders = holder['holder_count']
     return lv2_holders, lv3_holders, lv4_holders
-    
+####################################################################
+def calculate_round_number(start_date, target_date):
+    delta = target_date - start_date
+    round_number = delta.days // 7 + 1
+    return round_number
 ####################################################################
 snapshot_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" (UTC+0)"
 unix_timestamp = time.time()
-land_round = '11'
-land1_url = "https://citizen.dosi.world/api/citizen/v1/lands/31"
-land2_url = "https://citizen.dosi.world/api/citizen/v1/lands/32"
-land3_url = "https://citizen.dosi.world/api/citizen/v1/lands/33"
+start_date = datetime(2023, 6, 13, 0, 0, tzinfo=timezone.utc)  # June 13, 2023 at 00:00 UTC+0
+current_date = datetime.now(timezone.utc)
+land_round = calculate_round_number(start_date, current_date)
+land1_url = "https://citizen.dosi.world/api/citizen/v1/lands/"+str(land_round*3-2)
+land2_url = "https://citizen.dosi.world/api/citizen/v1/lands/"+str(land_round*3-1)
+land3_url = "https://citizen.dosi.world/api/citizen/v1/lands/"+str(land_round*3)
 headers = ""
 
 zones=[]
