@@ -1,14 +1,3 @@
-# DOSI Wallet Address - Finschia
-# Stock ของที่มิ้นไว้แล้ว ยังไม่ได้แจกออก
-# link1xsyfmnw8apwng5dsyuatqsr9kqpdgvcgah3gl9
-# link1hlt7wpl4xut8zgds5chh9drgcmyyedkcxwlesy
-# Burn กระเป๋าเก็บอ้วนที่เผาทิ้งแล้ว
-# เดิม link1gzdpyyx854ftpg4h9fr36wsk8vvdqtvu5f7qvz
-# ใหม่ link1hdujvs3hjfvtm0lujulrnrpaxcygut7lva2clf
-# Citizen Friends Burn link1hvffqwtg82zru6fnz0kwclezz402480zkw0am5
-# Marketplace อ้วนที่ตั้งขายอยู่
-# link1e9r6el8f9um7xcldd6ne8hglavetuq6tgfgeym
-
 import requests
 import time
 import pandas as pd
@@ -39,8 +28,8 @@ def create_image(html, css):
     return image_url
 ####################################################################
 def send_discord(message, image_url):
-    # webhook_url = "https://discord.com/api/webhooks/1118077000846946326/S7erj7Nan8Zoe_ICGw8BuMcrA69vQnpoXciM_Tql8XKApQnZ494uLPr-A6mud2FCaDgI" # for testing
-    webhook_url = "https://discord.com/api/webhooks/1115884800914509864/psxWHTjiuAxNRV_ByIeWyDIB3Xfhp5oLL6xuAa_JQXvIjD2xga2KFyNK2dGIh5ByUuml" # DOSI Insight
+    webhook_url = "https://discord.com/api/webhooks/1118077000846946326/S7erj7Nan8Zoe_ICGw8BuMcrA69vQnpoXciM_Tql8XKApQnZ494uLPr-A6mud2FCaDgI" # for testing
+    # webhook_url = "https://discord.com/api/webhooks/1115884800914509864/psxWHTjiuAxNRV_ByIeWyDIB3Xfhp5oLL6xuAa_JQXvIjD2xga2KFyNK2dGIh5ByUuml" # DOSI Insight
     webhook = DiscordWebhook(url=webhook_url)
 
     webhook.content = message
@@ -49,7 +38,7 @@ def send_discord(message, image_url):
 
     response = webhook.execute()
 ####################################################################
-def create_html_file(data, time):
+def create_html_file(data, time, timestamp):
     css = '''
         h1, p {
             margin: 5px 0px 10px 0px;
@@ -133,7 +122,7 @@ def create_html_file(data, time):
     html3 = '''</table></body></html>'''
     
     html = html1+html2+html3
-    discord_message = "## DOSI Citizen Daily Holder & Supply Summary\n`Data as of "+time+"`\n**This message is auto generated from Finschia snapshot data.  If you have any question please contact <@701502808079204375> for more details.*"
+    discord_message = "## DOSI Citizen Daily Holder & Supply Summary\n`Data as of `<t:"+str(int(timestamp))+":f>` (your local time.)`\n**This message is auto generated from Finschia snapshot data.  If you have any question please contact <@701502808079204375> for more details.*"
     send_discord(discord_message, create_image(html,css))
 
 ####################################################################
@@ -303,7 +292,7 @@ def fetch_stock(url, headers=None):
 
 ####################################################################
 def main():
-    # timestamp = time.time()
+    unix_timestamp = time.time()
     # timestamp = datetime.now().strftime('%Y%m%d')
     timestamp = datetime.now().toordinal()-693594
     snapshot_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" (UTC+0)"
@@ -488,17 +477,7 @@ def main():
     
     print("Data update completed")
     print(dosi)
-    create_html_file(dosi, snapshot_time)
-
-    # filename = "dosi pnl.xlsx"
-    # filepath = r"D:\\OneDrive\\Crypto\\DOSI\\"
-    # filepath = ""
-    # sheetname = 'Supply'
-
-    # with pd.ExcelWriter(filepath+filename, mode='a', if_sheet_exists='overlay') as writer:
-    #     dosi.to_excel(writer, sheet_name=sheetname, index=False, startrow=writer.sheets[sheetname].max_row, header=None)
-    #     print("Saved to file to ", filepath, filename)
-
+    create_html_file(dosi, snapshot_time, unix_timestamp)
 ####################################################################
 if __name__ == "__main__":
     main()
