@@ -418,7 +418,7 @@ def main():
 
     url_burn_dog = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000b/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBiIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaHZmZnF3dGc4MnpydTZmbnowa3djbGV6ejQwMjQ4MHprdzBhbTYifQ=="
 
-    # url_burn_robocat = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000c/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBjIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaGR1anZzM2hqZnZ0bTBsdWp1bHJucnBheGN5Z3V0N2x2YTJjbGcifQ=="
+    url_burn_robocat = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000c/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBjIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxaHZmZnF3dGc4MnpydTZmbnowa3djbGV6ejQwMjQ4MHprdzBhbTYifQ=="
 
     url_burn_mtdz = "https://explorer.blockchain.line.me/v1/finschia-2/item-token-types/f68e7fd5/1000000d/holders?size=1&upper_than=eyJ0b2tlblR5cGVJZGVudGlmaWVyVG9rZW5UeXBlSG9sZGVyRmlsdGVyIjp7ImNvbnRyYWN0SWQiOiJmNjhlN2ZkNSIsInRva2VuVHlwZSI6IjEwMDAwMDBkIn0sIm9yZGVyQnkiOiJBRERSRVNTX0RFU0MiLCJhZnRlciI6ImxpbmsxZ3pkcHl5eDg1NGZ0cGc0aDlmcjM2d3NrOHZ2ZHF0dnU1Zjdxd2EifQ=="
 
@@ -483,7 +483,7 @@ def main():
     holders['Burn'][7]+=fetch_stock(url_burn_liner,headers)+fetch_stock(url_burn_liner_2,headers)
     holders['Burn'][8]+=fetch_stock(url_burn_hellbound,headers)+fetch_stock(url_burn_hellbound_2,headers)
     holders['Burn'][9]+=fetch_stock(url_burn_dog,headers)
-    # holders['Burn'][10]+=fetch_stock(url_burn_robocat,headers)
+    holders['Burn'][10]+=fetch_stock(url_burn_robocat,headers)
     holders['Burn'][11]+=fetch_stock(url_burn_mtdz,headers)+fetch_stock(url_burn_mtdz_2,headers)
     holders['Burn'][12]+=fetch_stock(url_burn_game_2,headers)
     holders['Burn'][13]+=fetch_stock(url_burn_goose,headers)
