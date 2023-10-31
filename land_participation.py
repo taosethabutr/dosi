@@ -142,7 +142,7 @@ def create_html_file(data, time, h2, h3, h4, timestamp):
     html4 = '''</body>
     '''
     discord_message = "## :cityscape: Land Snapshot Round "+str(land_round)+" :cityscape:\n`Data as of `<t:"+str(int(timestamp))+":f>` (your local time.)`\n**This message is auto generated every 4hr during Land participation period.  \nIf you have any question please contact <@701502808079204375> for more details.*"
-    # send_discord(discord_message, create_image(html1+html2+html3+html4,css))
+    send_discord(discord_message, create_image(html1+html2+html3+html4,css))
 ####################################################################
 def fetch_holders():
     url_holders = "https://explorer.blockchain.line.me/v1/finschia-2/contracts/f68e7fd5/token-types?size=30&search_from=top"
