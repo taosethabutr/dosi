@@ -142,7 +142,7 @@ def create_html_file(data, time, h2, h3, h4, timestamp):
     html4 = '''</body>
     '''
     discord_message = "## :cityscape: Land Snapshot Round "+str(land_round)+" :cityscape:\n`Data as of `<t:"+str(int(timestamp))+":f>` (your local time.)`\n**This message is auto generated every 4hr during Land participation period.  \nIf you have any question please contact <@701502808079204375> for more details.*"
-    send_discord(discord_message, create_image(html1+html2+html3+html4,css))
+    # send_discord(discord_message, create_image(html1+html2+html3+html4,css))
 ####################################################################
 def fetch_holders():
     url_holders = "https://explorer.blockchain.line.me/v1/finschia-2/contracts/f68e7fd5/token-types?size=30&search_from=top"
@@ -261,9 +261,9 @@ for index, row in lands[['zones', 'zoneRewards', 'winnerCount', 'citizenNftCount
     if (row['winnerCount']*row['lupPerParticipant'])>0:
         reward = row['zoneRewards']*0.3/(row['winnerCount']*row['lupPerParticipant'])*0.7
         line_message += row['zones']+": "+str(round(reward*0.9,4))+" - "+str(round(reward*1.1,4))+"\n"
-line_message += "\nEstimated rewards per NFT per 21,900DON (after tax):\n"
+line_message += "\nEstimated rewards per NFT per 30,000DON (after tax):\n"
 for index, row in lands[['zones', 'zoneRewards', 'requiredDON', 'winnerCount', 'citizenNftCount', 'nftPerParticipant']].iterrows():
-    if (row['winnerCount']*row['nftPerParticipant'])/row['requiredDON']*21900*0.7>0:
-        line_message += row['zones']+": "+str(round(row['zoneRewards']*0.7/(row['winnerCount']*row['nftPerParticipant'])/row['requiredDON']*21900*0.7,2))+"\n"
+    if row['requiredDON']*30000*0.7>0:
+        line_message += row['zones']+": "+str(round(row['zoneRewards']*0.7/(row['winnerCount']*row['nftPerParticipant'])/row['requiredDON']*30000*0.7,2))+"\n"
 print(line_notify(line_message))
 create_html_file(lands, snapshot_time, holders_lv2, holders_lv3, holders_lv4, unix_timestamp)
