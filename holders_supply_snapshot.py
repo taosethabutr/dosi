@@ -567,7 +567,7 @@ def main():
     holders['Burn'][27]+=fetch_stock(url_burn_shiba,headers)
     # holders['Burn'][28]+=fetch_stock(url_burn_froborex,headers)
     # holders['Burn'][29]+=fetch_stock(url_burn_fshiba,headers)
-    holders['Burn'][30]+=fetch_stock(url_burn_alpca,headers)
+    holders['Burn'][30]+=fetch_stock(url_burn_alpaca,headers)
     # holders['Burn'][31]+=fetch_stock(url_burn_falpaca,headers)
     print("Burn Supply Updated")
 
